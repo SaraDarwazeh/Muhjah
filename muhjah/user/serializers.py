@@ -16,3 +16,8 @@ class UserSignupSerializer(serializers.ModelSerializer):
     def create(self, validated_value):
         validated_value["role"] = Role.USER.value
         return User.objects.create_user(**validated_value)
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'role', 'is_active')
