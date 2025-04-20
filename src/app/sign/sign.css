@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { height: 100%; font-family: 'Cairo', sans-serif; }
+
+.wrapper {
+  background: #f7f7f7;
+  height: 100vh; width: 100vw;
+  display: flex; justify-content: center; align-items: center;
+  padding: 1rem;
+}
+
+.form-card {
+  background: #fff;
+  width: 360px;
+  padding: 80px 25px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  width: 240px;
+  height: auto;
+  display: block;
+  margin: -80px auto 30px;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+.input-group input {
+  width: 100%; padding: 12px 45px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+}
+.input-group .icon.left {
+  position: absolute; top: 50%; left: 12px;
+  transform: translateY(-50%);
+  width: 20px; opacity: 0.6;
+}
+.input-group.password-group .icon.left {
+  left: 16px;
+}
+.input-group .icon.right {
+  position: absolute; top: 50%; right: 12px;
+  transform: translateY(-50%);
+  width: 20px; cursor: pointer; opacity: 0.6;
+}
+
+.row { display: flex; gap: 10px; }
+.row .input-group { flex: 1; }
+
+.forgot {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+}
+
+.action-btn {
+  width: 100%; padding: 14px;
+  background: #F76C3E;
+  color: #fff; font-family: 'Cairo', sans-serif; font-size: 1rem;
+  border: none; border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(247,108,62,0.4);
+  margin-top: 10px;
+}
+.action-btn:hover { background: #e15a2c; }
+
+.separator {
+  margin: 20px 0 15px;
+  font-size: 0.9rem;
+  color: #bbb;
+  font-family: 'Cairo', sans-serif;
+}
+
+.social-icons { display: flex; justify-content: center; gap: 20px; }
+.social-icons img { width: 36px; cursor: pointer; }
+
+.toggle-text {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: #555;
+  font-family: 'Cairo', sans-serif;
+}
+.toggle-text span {
+  color: #F76C3E;
+  font-weight: bold;
+  cursor: pointer;
+}

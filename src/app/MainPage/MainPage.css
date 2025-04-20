@@ -1,0 +1,21 @@
+.main-page-wrapper {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: linear-gradient(to bottom right, #f3e8ff, #e0e7ff); /* بنفسجي فاتح */
+}
+
+.main-dashboard {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.main-dashboard h1 {
+  font-size: 2.5rem;
+  color: #7A5AF8; /* بنفسجي أنيق */
+  font-weight: 700;
+}
+
+.main-dashboard p {
+  font-size: 1.2rem;
+  color: #555; /* لون رمادي أنعم */
+}
