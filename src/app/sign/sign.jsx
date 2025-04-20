@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './sign.css';
 import Logo from "../../assets/Muhja.png";
+import Image2 from "../../assets/Mum.png"; // الصورة الثانية
 import UserIcon from "../../assets/Message.svg";
 import EmailIcon from "../../assets/Message-1.svg";
 import LockIcon from "../../assets/Lock-icon.svg";
@@ -37,105 +38,112 @@ export default function Sign() {
   };
 
   return (
-    <div className="wrapper">
-      <div className="form-card">
-        {/* Use .logo class for sizing */}
-        <img src={Logo} alt="Muhja Logo" className="logo" />
-        <h2 className="form-title">{isSignup ? 'التسجيل' : 'تسجيل الدخول'}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <img src={UserIcon} alt="User" className="icon left" />
-            <input
-              type="text"
-              name="username"
-              placeholder="اسم المستخدم"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {!isSignup && null}
-          {isSignup && (
-            <div className="input-group">
-              <img src={EmailIcon} alt="Email" className="icon left" />
-              <input
-                type="email"
-                name="email"
-                placeholder="البريد الإلكتروني"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          )}
-
-          {isSignup && (
-            <div className="row">
-              <div className="input-group">
-                <img src={UserIcon} alt="Family" className="icon left" />
-                <input
-                  type="text"
-                  name="familyName"
-                  placeholder="العائلة"
-                  value={formData.familyName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="input-group">
-                <img src={UserIcon} alt="First" className="icon left" />
-                <input
-                  type="text"
-                  name="firstName"
-                  placeholder="الاسم الأول"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-          )}
-
-          <div className="input-group password-group">
-            <img src={LockIcon} alt="Lock" className="icon left" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="كلمة المرور"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <img
-              src={EyeSlash}
-              alt="Toggle"
-              className="icon right eye"
-              onClick={() => setShowPassword(v => !v)}
-            />
-          </div>
-
-          {!isSignup && <p className="forgot">نسيت كلمة المرور؟</p>}
-
-          <button type="submit" className="action-btn">
-            {isSignup ? 'التسجيل' : 'تسجيل الدخول'}
-          </button>
-        </form>
-
-        <div className="separator">— Or Continue with —</div>
-
-        <div className="social-icons">
-          <img src={GoogleIcon} alt="Google" />
-          <img src={FacebookIcon} alt="Facebook" />
+      <div className="wrapper">
+        {/* القسم الأيمن */}
+        <div className="right-side">
+          <img src={Logo} alt="Logo" className="main-logo" />
+          <img src={Image2} alt="Secondary" className="second-image" />
+          <p className="welcome-text">مرحبًا بك في منصة مُهجة، حيث نربطك بالعالم بأمان وسهولة!</p>
         </div>
 
-        <p className="toggle-text">
-          {isSignup ? 'لديك حساب بالفعل؟' : 'ليس لديك حساب؟'}{' '}
-          <span onClick={() => setIsSignup(f => !f)}>
-            {isSignup ? 'تسجيل الدخول' : 'التسجيل'}
-          </span>
-        </p>
+        {/* القسم الأيسر */}
+        <div className="left-side">
+          <div className="form-card">
+            <h2 className="form-title">{isSignup ? 'التسجيل' : 'تسجيل الدخول'}</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <img src={UserIcon} alt="User" className="icon left" />
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="اسم المستخدم"
+                    value={formData.username}
+                    onChange={handleChange}
+                    required
+                />
+              </div>
+
+              {isSignup && (
+                  <>
+                    <div className="input-group">
+                      <img src={EmailIcon} alt="Email" className="icon left" />
+                      <input
+                          type="email"
+                          name="email"
+                          placeholder="البريد الإلكتروني"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                      />
+                    </div>
+
+                    <div className="row">
+                      <div className="input-group">
+                        <img src={UserIcon} alt="Family" className="icon left" />
+                        <input
+                            type="text"
+                            name="firstName"
+                            placeholder="الاسم الأول"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                        />
+                      </div>
+                      <div className="input-group">
+                        <img src={UserIcon} alt="First" className="icon left" />
+                        <input
+                            type="text"
+                            name="familyName"
+                            placeholder="اسم العائلة"
+                            value={formData.familyName}
+                            onChange={handleChange}
+                            required
+                        />
+                      </div>
+                    </div>
+                  </>
+              )}
+
+              <div className="input-group password-group">
+                <img src={LockIcon} alt="Lock" className="icon left" />
+                <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    placeholder="كلمة المرور"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                />
+                <img
+                    src={EyeSlash}
+                    alt="Toggle"
+                    className="icon right eye"
+                    onClick={() => setShowPassword(v => !v)}
+                />
+              </div>
+
+              {!isSignup && <p className="forgot">نسيت كلمة المرور؟</p>}
+
+              <button type="submit" className="action-btn">
+                {isSignup ? 'التسجيل' : 'تسجيل الدخول'}
+              </button>
+            </form>
+
+            <div className="separator">— أو تابع باستخدام —</div>
+
+            <div className="social-icons">
+              <img src={GoogleIcon} alt="Google" />
+              <img src={FacebookIcon} alt="Facebook" />
+            </div>
+
+            <p className="toggle-text">
+              {isSignup ? 'لديك حساب بالفعل؟' : 'ليس لديك حساب؟'}{' '}
+              <span onClick={() => setIsSignup(f => !f)}>
+              {isSignup ? 'تسجيل الدخول' : 'التسجيل'}
+            </span>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
   );
 }
