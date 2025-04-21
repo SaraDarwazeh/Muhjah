@@ -1,137 +1,124 @@
-import React, { useState } from "react";
-import "./Chat.css";
-import { FaMicrophone, FaPaperclip } from "react-icons/fa";
+import React, { useState } from 'react';
+import { Phone, Mic, Image as ImageIcon, Send } from 'lucide-react';
+import './Chat.css';
 
-const ChatUI = () => {
-  const [messageInput, setMessageInput] = useState("");
+const users = [
+  {
+    id: 1,
+    name: 'مريم العلي',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+  },
+  {
+    id: 2,
+    name: 'خالد الزين',
+    image: 'https://randomuser.me/api/portraits/men/33.jpg',
+  },
+  {
+    id: 3,
+    name: 'سارة أحمد',
+    image: 'https://randomuser.me/api/portraits/women/12.jpg',
+  },
+  {
+    id: 4,
+    name: 'عادل جابر',
+    image: 'https://randomuser.me/api/portraits/men/45.jpg',
+  },
+];
 
-  const contacts = [
-    {
-      name: "Amina Yusuf",
-      avatar: "https://randomuser.me/api/portraits/women/30.jpg",
-    },
-    {
-      name: "Daniel Obi",
-      avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-    },
-    {
-      name: "Fatima Bello",
-      avatar: "https://randomuser.me/api/portraits/women/32.jpg",
-    },
-  ];
+const initialConversations = {
+  1: [
+    { id: 1, sender: 'patient', text: 'دكتور، بنتي ما عم تاكل منيح، شو ممكن أعمل؟' },
+    { id: 2, sender: 'doctor', text: 'جربي تعطيها وجبات خفيفة كل ساعتين، وشوفي شو بتحب أكتر 💡' }
+  ],
+  2: [
+    { id: 1, sender: 'patient', text: 'سلام دكتور، فحص الطفلة كان تمام؟' },
+    { id: 2, sender: 'doctor', text: 'الحمد لله، النمو طبيعي، بس بدنا نتابع الحديد وفيتامين D' }
+  ],
+  3: [
+    { id: 1, sender: 'patient', text: 'ابني عنده حرارة، استنى رأيك قبل ما أروح الطوارئ' },
+    { id: 2, sender: 'doctor', text: 'إذا الحرارة فوق ٣٩ وما بتنزل، الأفضل تروحي فورًا' }
+  ],
+  4: [
+    { id: 1, sender: 'patient', text: 'شو رأيك بأكل الطفل عمره سنة؟' },
+    { id: 2, sender: 'doctor', text: 'لازم يكون متنوع، وفيه بروتين، وخضار، وفواكه بشكل يومي 🍎🥦' }
+  ],
+};
 
-  const [activeChat, setActiveChat] = useState(contacts[0]);
-  const [search, setSearch] = useState("");
+const Chat = () => {
+  const [activeUserId, setActiveUserId] = useState(users[0].id);
+  const [conversations, setConversations] = useState(initialConversations);
+  const [newMessage, setNewMessage] = useState("");
 
-  const [chatHistory, setChatHistory] = useState({
-    "Amina Yusuf": [
-      { sender: "patient", text: "Hello doctor", time: "6:00 PM" },
-      { sender: "doctor", text: "Hi Amina, how can I help you?", time: "6:01 PM" },
-    ],
-    "Daniel Obi": [],
-    "Fatima Bello": [],
-  });
+  const activeUser = users.find(u => u.id === activeUserId);
+  const messages = conversations[activeUserId] || [];
 
-  const handleSend = () => {
-    if (messageInput.trim() === "") return;
-
-    const newMessage = {
-      sender: "doctor",
-      text: messageInput,
-      time: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
-
-    setChatHistory((prev) => ({
-      ...prev,
-      [activeChat.name]: [...(prev[activeChat.name] || []), newMessage],
-    }));
-
-    setMessageInput("");
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      const newMsg = { id: messages.length + 1, sender: 'doctor', text: newMessage };
+      setConversations({
+        ...conversations,
+        [activeUserId]: [...messages, newMsg]
+      });
+      setNewMessage("");
+    }
   };
 
-  const filteredContacts = contacts.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase())
-  );
-
   return (
-    <div className="chat-ui-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h2>Chats</h2>
-        <input
-          type="text"
-          placeholder="Search or start new chat"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <div className="contacts-list">
-          {filteredContacts.map((c, index) => (
-            <div
-              key={index}
-              className={`contact ${activeChat.name === c.name ? "active" : ""}`}
-              onClick={() => setActiveChat(c)}
-            >
-              <img src={c.avatar} alt={c.name} />
-              <div className="contact-info">
-                <strong>{c.name}</strong>
-                <small>Last message preview</small>
+      <div className="chat-container">
+        <div className="sidebar">
+          <h3 className="sidebar-title">المحادثات</h3>
+          {users.map(user => (
+              <div
+                  key={user.id}
+                  className={`user-card ${activeUserId === user.id ? 'active' : ''}`}
+                  onClick={() => setActiveUserId(user.id)}
+              >
+                <img src={user.image} alt={user.name} />
+                <div className="user-info">
+                  <h4>{user.name}</h4>
+                  <p>اضغط لعرض المحادثة</p>
+                </div>
               </div>
-            </div>
           ))}
         </div>
-      </div>
 
-      {/* Chat Panel */}
-      <div className="chat-panel">
-        <div className="chat-header">
-          <img src={activeChat.avatar} alt={activeChat.name} />
-          <div>
-            <h5>{activeChat.name}</h5>
-            <span className="online">online</span>
+        <div className="chat-main">
+          <div className="chat-header">
+            <img src={activeUser.image} alt="مريض" />
+            <div>
+              <h2>{activeUser.name}</h2>
+              <p>متصل الآن</p>
+            </div>
+            <div className="chat-icons">
+              <Phone size={20} />
+              <Mic size={20} />
+              <ImageIcon size={20} />
+            </div>
+          </div>
+
+          <div className="chat-body">
+            {messages.map(msg => (
+                <div
+                    key={msg.id}
+                    className={`chat-bubble ${msg.sender === 'doctor' ? 'from-doctor' : 'from-patient'}`}
+                >
+                  {msg.text}
+                </div>
+            ))}
+          </div>
+
+          <div className="chat-input">
+            <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                placeholder="اكتب رسالتك هنا..."
+            />
+            <button onClick={handleSendMessage}><Send size={18} /></button>
           </div>
         </div>
-
-        <div className="chat-body">
-          {(chatHistory[activeChat.name] || []).map((msg, i) => (
-            <div
-              key={i}
-              className={`message ${
-                msg.sender === "doctor" ? "sent" : "received"
-              }`}
-            >
-              <div className="bubble">{msg.text}</div>
-              <small className="time">{msg.time}</small>
-            </div>
-          ))}
-        </div>
-
-        <div className="chat-footer">
-          <button className="icon-btn" title="Record Audio">
-            <FaMicrophone />
-          </button>
-
-          <button className="icon-btn" title="Attach File">
-            <FaPaperclip />
-          </button>
-
-          <input
-            type="text"
-            placeholder="Type a message"
-            value={messageInput}
-            onChange={(e) => setMessageInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          />
-
-          <button className="send-btn" onClick={handleSend}>
-            Send
-          </button>
-        </div>
       </div>
-    </div>
   );
 };
 
-export default ChatUI;
+export default Chat;

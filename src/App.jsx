@@ -29,7 +29,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/overview" element={<EmptyPage title="Overview" />} />
         <Route path="/appointments" element={<EmptyPage title="Appointments" />} />
-        <Route path="/messages" element={<ChatUI />} />
+        <Route path="/الرسائل" element={<ChatUI />} />
         <Route path="/patients" element={<EmptyPage title="Patients" />} />
         <Route path="/schedule" element={<EmptyPage title="Schedule" />} />
         <Route path="/reports" element={<EmptyPage title="Reports" />} />
