@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  background: #fef7f5;
+}
+
+.wrapper {
+  display: flex;
+  height: 90vh; /* أقل من 100vh */
+  width: 90%;
+  max-width: 1400px;
+  margin: 3vh auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* الجانب الأيمن */
+.right-side {
+  flex: 1;
+  background: linear-gradient(to bottom right, #e96c53, #f5b047);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.main-logo {
+  width: 250px;
+  margin-bottom: -4rem;
+}
+
+.second-image {
+  width: 500px;
+  max-width: 80%;
+  margin-bottom: 1.2rem;
+}
+
+.welcome-text {
+  font-family: 'Cairo', sans-serif;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+/* الجانب الأيسر */
+.left-side {
+  flex: 1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form-title {
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #e96c53;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+}
+
+.icon.left {
+  right: 10px;
+}
+
+.icon.right.eye {
+  left: 10px;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row .input-group {
+  flex: 1;
+}
+
+.forgot {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #f5b047;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.action-btn {
+  width: 100%;
+  background-color: #e96c53;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #cf533f;
+}
+
+.separator {
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #999;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.social-icons img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.toggle-text {
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.toggle-text span {
+  color: #e96c53;
+  font-weight: 700;
+  cursor: pointer;
+}

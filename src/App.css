@@ -1,0 +1,155 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #FDEFF9, #D8E2DC);
+}
+
+/* Centered wrapper */
+.nuvia-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Card container */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.97);
+  padding: 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.08);
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+/* Cute top emoji / logo icon */
+.form-container::before {
+  content: "👶";
+  font-size: 3rem;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* App title */
+.logo {
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #FF6B6B;
+  margin-bottom: 5px;
+}
+
+/* Subtext */
+.subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 38px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #FF6B6B;
+  outline: none;
+}
+
+.input-group .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #aaa;
+  left: 12px;
+}
+
+.input-group .eye {
+  right: 12px;
+  left: auto;
+  cursor: pointer;
+}
+
+/* Forgot password */
+.forgot {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.forgot a {
+  color: #74b9ff;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF6B6B;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 14px rgba(255, 107, 107, 0.4);
+}
+
+.login-btn:hover {
+  background-color: #e85c5c;
+}
+
+/* Signup toggle */
+.signup-link {
+  margin-top: 22px;
+  font-size: 0.92rem;
+  color: #444;
+}
+
+.signup-link a {
+  color: #FF6B6B;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,126 @@
+:root {
+  --main-color: #e96c53;
+  --sec-color: #f5b047;
+}
+
+.main-page-wrapper {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: #fdfaf8;
+  overflow-x: hidden;
+}
+
+.main-dashboard {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.main-dashboard h1 {
+  font-size: 2.5rem;
+  color: var(--sec-color);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.main-dashboard p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* horizontal scrollable row */
+.dashboard-row {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-box {
+  min-width: 250px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  background-color: #fff;
+  border-right: 8px solid var(--main-color);
+  padding: 1.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-box h2 {
+  font-size: 2.4rem;
+  color: var(--sec-color);
+  margin: 0;
+}
+
+.dashboard-box p {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 0;
+}
+
+.dashboard-box:hover {
+  transform: translateY(-4px);
+}
+
+.schedule-section {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.schedule-section h3 {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.schedule-card {
+  background: linear-gradient(135deg, #fff4e6, #fff);
+  border-right: 6px solid var(--sec-color);
+  padding: 1.3rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  text-align: right;
+  transition: transform 0.2s ease;
+}
+
+.schedule-card:hover {
+  transform: translateY(-4px);
+}
+
+.schedule-card span {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.schedule-card p {
+  font-size: 1.15rem;
+  margin-top: 0.4rem;
+  color: var(--main-color);
+}
