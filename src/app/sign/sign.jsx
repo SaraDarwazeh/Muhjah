@@ -1,6 +1,6 @@
-// src/app/sign/sign.jsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios'; // اضفنا axios
 import './sign.css';
 import Logo from '../../assets/Muhja.png';
 import Image2 from '../../assets/Mum.png';
@@ -21,21 +21,46 @@ export default function Sign() {
     firstName: '',
     password: ''
   });
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = e => {
+  const BASE_URL = "http://127.0.0.1:8000"; // رابط الباكند لوكال
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSignup) {
-      alert('تم إنشاء الحساب بنجاح!');
-    } else {
-      alert('تم تسجيل الدخول!');
+    setError('');
+    try {
+      if (isSignup) {
+        // طلب تسجيل حساب جديد
+        await axios.post(`${BASE_URL}/signup/`, {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          first_name: formData.firstName,
+          last_name: formData.familyName,
+          role: "DOCTOR" // حسب تعليمات الـ API
+        });
+        alert('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.');
+        setIsSignup(false); // يرجعك لصفحة تسجيل الدخول بعد إنشاء الحساب
+      } else {
+        // طلب تسجيل دخول
+        const response = await axios.post(`${BASE_URL}/login/`, {
+          username: formData.username,
+          password: formData.password
+        });
+        const { access } = response.data;
+        localStorage.setItem('token', access); // نخزن التوكن عشان نستخدمه لاحقًا
+        navigate('/main'); // نوجه المستخدم للداشبورد
+      }
+    } catch (err) {
+      console.error('API Error:', err);
+      setError('حدث خطأ، يرجى التأكد من المعلومات.');
     }
-    navigate('/main');
   };
 
   return (
@@ -52,9 +77,7 @@ export default function Sign() {
       {/* القسم الأيسر */}
       <div className="left-side">
         <div className="form-card">
-          <h2 className="form-title">
-            {isSignup ? 'التسجيل' : 'تسجيل الدخول'}
-          </h2>
+          <h2 className="form-title">{isSignup ? 'التسجيل' : 'تسجيل الدخول'}</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <img src={UserIcon} alt="User" className="icon left" />
@@ -127,12 +150,13 @@ export default function Sign() {
               />
             </div>
 
-            {/* هنا قمنا بتحويل النص إلى رابط */}
             {!isSignup && (
               <p className="forgot">
                 <Link to="/forget-password">نسيت كلمة المرور؟</Link>
               </p>
             )}
+
+            {error && <p className="error">{error}</p>}
 
             <button type="submit" className="action-btn">
               {isSignup ? 'التسجيل' : 'تسجيل الدخول'}
