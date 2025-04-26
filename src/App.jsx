@@ -1,10 +1,11 @@
+// src/App.js
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Sign from './app/sign/sign';
 import MainPage from './app/MainPage/MainPage';
 import ForgetPassword from './app/ForgetPassword/ForgetPassword';
-import ChatUI from './app/Chat/Chat'; // ✅ تأكد من استيراد الكومبوننت الصح
-import Navbar from './app/Navbar/Navbar'; // ✅ تأكد من المسار الصح
+import ChatUI from './app/Chat/Chat';
+import Navbar from './app/Navbar/Navbar';
 
 // صفحات مؤقتة لروابط النافبار
 const EmptyPage = ({ title }) => (
@@ -16,17 +17,26 @@ const EmptyPage = ({ title }) => (
 
 function App() {
   const location = useLocation();
-  const hideNavbarOn = ['/', '/forgot-password'];
 
+  // اخفاء الـ Navbar على هذين المسارين تمامًا
+  const hideNavbarOn = ['/', '/forget-password'];
   const shouldShowNavbar = !hideNavbarOn.includes(location.pathname);
 
   return (
     <>
       {shouldShowNavbar && <Navbar />}
+
       <Routes>
+        {/* صفحة تسجيل الدخول */}
         <Route path="/" element={<Sign />} />
+
+        {/* الصفحة الرئيسية بعد الدخول */}
         <Route path="/main" element={<MainPage />} />
-        <Route path="/forgot-password" element={<ForgetPassword />} />
+
+        {/* صفحة استعادة كلمة المرور */}
+        <Route path="/forget-password" element={<ForgetPassword />} />
+
+        {/* روابط مؤقتة للنافبار */}
         <Route path="/overview" element={<EmptyPage title="Overview" />} />
         <Route path="/appointments" element={<EmptyPage title="Appointments" />} />
         <Route path="/الرسائل" element={<ChatUI />} />
