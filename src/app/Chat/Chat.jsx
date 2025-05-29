@@ -1,60 +1,45 @@
 import React, { useState } from 'react';
-import { Phone, Mic, Image as ImageIcon, Send } from 'lucide-react';
+import { Phone, Mic, Image as ImageIcon, Send, CheckCheck } from 'lucide-react';
 import './Chat.css';
 
 const users = [
-  {
-    id: 1,
-    name: 'مريم العلي',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    id: 2,
-    name: 'خالد الزين',
-    image: 'https://randomuser.me/api/portraits/men/33.jpg',
-  },
-  {
-    id: 3,
-    name: 'سارة أحمد',
-    image: 'https://randomuser.me/api/portraits/women/12.jpg',
-  },
-  {
-    id: 4,
-    name: 'عادل جابر',
-    image: 'https://randomuser.me/api/portraits/men/45.jpg',
-  },
+  { id: 1, name: 'مريم العلي', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { id: 2, name: 'خالد الزين', image: 'https://randomuser.me/api/portraits/men/33.jpg' },
+  { id: 3, name: 'سارة أحمد', image: 'https://randomuser.me/api/portraits/women/12.jpg' },
+  { id: 4, name: 'عادل جابر', image: 'https://randomuser.me/api/portraits/men/45.jpg' },
+  { id: 5, name: 'ياسمين', image: 'https://randomuser.me/api/portraits/women/65.jpg' },
+  { id: 6, name: 'كريم', image: 'https://randomuser.me/api/portraits/men/22.jpg' },
+  { id: 7, name: 'ليلى', image: 'https://randomuser.me/api/portraits/women/34.jpg' },
+  { id: 8, name: 'سامي', image: 'https://randomuser.me/api/portraits/men/18.jpg' },
+  { id: 9, name: 'رنا', image: 'https://randomuser.me/api/portraits/women/55.jpg' },
+  { id: 10, name: 'أحمد', image: 'https://randomuser.me/api/portraits/men/41.jpg' },
 ];
 
-const initialConversations = {
-  1: [
-    { id: 1, sender: 'patient', text: 'دكتور، بنتي ما عم تاكل منيح، شو ممكن أعمل؟' },
-    { id: 2, sender: 'doctor', text: 'جربي تعطيها وجبات خفيفة كل ساعتين، وشوفي شو بتحب أكتر 💡' }
-  ],
-  2: [
-    { id: 1, sender: 'patient', text: 'سلام دكتور، فحص الطفلة كان تمام؟' },
-    { id: 2, sender: 'doctor', text: 'الحمد لله، النمو طبيعي، بس بدنا نتابع الحديد وفيتامين D' }
-  ],
-  3: [
-    { id: 1, sender: 'patient', text: 'ابني عنده حرارة، استنى رأيك قبل ما أروح الطوارئ' },
-    { id: 2, sender: 'doctor', text: 'إذا الحرارة فوق ٣٩ وما بتنزل، الأفضل تروحي فورًا' }
-  ],
-  4: [
-    { id: 1, sender: 'patient', text: 'شو رأيك بأكل الطفل عمره سنة؟' },
-    { id: 2, sender: 'doctor', text: 'لازم يكون متنوع، وفيه بروتين، وخضار، وفواكه بشكل يومي 🍎🥦' }
-  ],
-};
+const initialConversations = users.reduce((acc, user, index) => {
+  acc[user.id] = [
+    { id: 1, sender: 'patient', text: `مرحبا دكتور، عندي سؤال بخصوص طفلي رقم ${index + 1}` },
+    { id: 2, sender: 'doctor', text: 'تفضل، أنا جاهز أجاوبك 😊' }
+  ];
+  return acc;
+}, {});
 
 const Chat = () => {
   const [activeUserId, setActiveUserId] = useState(users[0].id);
   const [conversations, setConversations] = useState(initialConversations);
   const [newMessage, setNewMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const activeUser = users.find(u => u.id === activeUserId);
   const messages = conversations[activeUserId] || [];
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      const newMsg = { id: messages.length + 1, sender: 'doctor', text: newMessage };
+      const newMsg = {
+        id: messages.length + 1,
+        sender: 'doctor',
+        text: newMessage,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
       setConversations({
         ...conversations,
         [activeUserId]: [...messages, newMsg]
@@ -63,11 +48,20 @@ const Chat = () => {
     }
   };
 
+  const filteredUsers = users.filter(user => user.name.includes(searchTerm));
+
   return (
       <div className="chat-container">
         <div className="sidebar">
-          <h3 className="sidebar-title">المحادثات</h3>
-          {users.map(user => (
+          <h3 className="sidebar-title">قائمة المرضى</h3>
+          <input
+              type="text"
+              className="search-input"
+              placeholder="بحث باسم المريض..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {filteredUsers.map(user => (
               <div
                   key={user.id}
                   className={`user-card ${activeUserId === user.id ? 'active' : ''}`}
@@ -89,11 +83,7 @@ const Chat = () => {
               <h2>{activeUser.name}</h2>
               <p>متصل الآن</p>
             </div>
-            <div className="chat-icons">
-              <Phone size={20} />
-              <Mic size={20} />
-              <ImageIcon size={20} />
-            </div>
+
           </div>
 
           <div className="chat-body">
@@ -103,18 +93,29 @@ const Chat = () => {
                     className={`chat-bubble ${msg.sender === 'doctor' ? 'from-doctor' : 'from-patient'}`}
                 >
                   {msg.text}
+                  <div className="status-icon">
+                    <CheckCheck size={14} />
+                  </div>
+                  <time>{msg.timestamp || '١٠:٣٠'}</time>
                 </div>
             ))}
           </div>
 
           <div className="chat-input">
-            <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="اكتب رسالتك هنا..."
-            />
-            <button onClick={handleSendMessage}><Send size={18} /></button>
+            <div className="input-with-icons">
+              <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  placeholder="اكتب رسالتك هنا..."
+              />
+              <div className="chat-icons-inside">
+                <Phone size={18} />
+                <Mic size={18} />
+                <ImageIcon size={18} />
+              </div>
+            </div>
+            <button onClick={handleSendMessage}><Send size={30} /></button>
           </div>
         </div>
       </div>
