@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+.patients-container {
+    padding: 120px 20px 40px;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+/* ====== Header: Actions + Search ====== */
+.patients-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.left-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Cairo', sans-serif;
+}
+
+.orange-btn {
+    background-color: #de5d58;
+    color: white;
+}
+
+.gray-btn {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #de5d58;
+    border-radius: 8px;
+    padding: 6px 12px;
+    min-width: 350px;
+    background-color: white;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+    width: 100%;
+}
+
+/* ====== Table ====== */
+.patients-table {
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Header row */
+.table-row.header {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
+    background-color: #de5d58;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+
+/* Table rows */
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
+    padding: 12px;
+    border: 1.4px solid black;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    align-items: center;
+    background-color: white;
+    min-height: 48px;
+}
+
+.table-row.alt-row {
+    background-color: #ececec;
+}
+
+/* Icon cells */
+.icon-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #de5d58;
+    transition: color 0.2s;
+}
+
+.icon:hover {
+    color: #a8322d;
+}
+
+/* ====== Pagination ====== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.pagination span {
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background-color: #de5d58;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination span:hover {
+    background-color: #ffe3e1;
+}
