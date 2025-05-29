@@ -1,6 +1,16 @@
+// src/app/ForgetPassword/ForgetPassword.jsx
+
 import React, { useState } from 'react';
 import './ForgetPassword.css';
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaCheckCircle } from 'react-icons/fa';
+import Logo from '../../assets/Muhja.png';
+import Illustration from '../../assets/Mum.png';
+import {
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaCheckCircle
+} from 'react-icons/fa';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
@@ -10,94 +20,116 @@ const ForgetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
+  const handleEmailChange = e => setEmail(e.target.value);
+  const handlePasswordChange = e => {
     setNewPassword(e.target.value);
     validatePassword(e.target.value);
   };
-
-  const validatePassword = (password) => {
+  const validatePassword = pwd => {
     const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!regex.test(password)) {
-      setPasswordError("Password must be at least 8 characters long, include one uppercase letter, and one number.");
-    } else {
-      setPasswordError('');
-    }
+    setPasswordError(
+      regex.test(pwd)
+        ? ''
+        : 'يجب أن تكون كلمة المرور 8 أحرف على الأقل، وتتضمن حرفًا كبيرًا ورقمًا.'
+    );
   };
-
   const checkEmail = () => {
-    if (email === "jamal.ilaiwi@gmail.com") {
-      setIsEmailValid(true);
-    } else {
-      setIsEmailValid(false);
-    }
     setIsEmailChecked(true);
+    setIsEmailValid(email.trim() === 'jamal.ilaiwi@gmail.com');
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    alert("Password has been updated successfully!");
+    alert('تم تحديث كلمة المرور بنجاح!');
   };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(v => !v);
 
   return (
     <div className="forget-password-page">
-      <div className="form-box">
-        <div className="emoji">👶</div>
-        <h2>Forget Password</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <FaEnvelope className="input-icon" />
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <button type="button" className="check-btn" onClick={checkEmail}>Check Email</button>
+      {/* Left panel */}
+      <div className="panel form-panel">
+        <div className="form-box">
+          <h2>نسيت كلمة المرور؟</h2>
+          <p className="instruction">
+            أدخل بريدك الإلكتروني للتحقق ثم اختر كلمة مرور جديدة
+          </p>
 
-          {isEmailChecked && !isEmailValid && (
-            <div className="error-message">Email not found! Please try again.</div>
-          )}
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <FaEnvelope className="input-icon" />
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="أدخل بريدك الإلكتروني"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              className="check-btn"
+              onClick={checkEmail}
+            >
+              تحقق من البريد
+            </button>
 
-          {isEmailValid && (
-            <>
-              <div className="input-group">
-                <FaLock className="input-icon" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={newPassword}
-                  onChange={handlePasswordChange}
-                  placeholder="Enter new password"
-                  required
-                />
-                <span className="eye-icon" onClick={togglePasswordVisibility}>
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </span>
-              </div>
+            {isEmailChecked && !isEmailValid && (
+              <div className="error-message">البريد غير مسجل!</div>
+            )}
 
-              {passwordError && <div className="error-message">{passwordError}</div>}
-
-              <button type="submit" className="submit-btn" disabled={passwordError}>
-                Submit
-              </button>
-
-              {!passwordError && newPassword && (
-                <div className="success-message">
-                  <FaCheckCircle /> Password Updated Successfully
+            {isEmailValid && (
+              <>
+                <div className="input-group">
+                  <FaLock className="input-icon" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={newPassword}
+                    onChange={handlePasswordChange}
+                    placeholder="أدخل كلمة المرور الجديدة"
+                    required
+                  />
+                  <span
+                    className="eye-icon"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
                 </div>
-              )}
-            </>
-          )}
-        </form>
+
+                {passwordError && (
+                  <div className="error-message">{passwordError}</div>
+                )}
+
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={!!passwordError}
+                >
+                  إرسال
+                </button>
+
+                {!passwordError && newPassword && (
+                  <div className="success-message">
+                    <FaCheckCircle /> تم التحديث بنجاح
+                  </div>
+                )}
+              </>
+            )}
+          </form>
+
+          <div className="back-to-login">
+            <a href="/login">العودة إلى تسجيل الدخول</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Right panel: imported PNGs */}
+      <div className="panel image-panel">
+        <img src={Logo} alt="Muhja Logo" className="logo" />
+        <div className="illustration">
+          <img src={Illustration} alt="أم وطفل" />
+        </div>
+        <h3>مرحبًا في منصة مُهجة</h3>
+        <p>نربطك بالعالم بأمان وسهولة!</p>
       </div>
     </div>
   );
