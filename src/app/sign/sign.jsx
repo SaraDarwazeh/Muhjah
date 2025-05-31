@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios'; // اضفنا axios
 import './sign.css';
 import Logo from '../../assets/Muhja.png';
 import Image2 from '../../assets/Mum.png';
@@ -21,51 +20,25 @@ export default function Sign() {
     firstName: '',
     password: ''
   });
-  const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const BASE_URL = "http://127.0.0.1:8000"; // رابط الباكند لوكال
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    try {
-      if (isSignup) {
-        // طلب تسجيل حساب جديد
-        await axios.post(`${BASE_URL}/signup/`, {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-          first_name: formData.firstName,
-          last_name: formData.familyName,
-          role: "DOCTOR" // حسب تعليمات الـ API
-        });
-        alert('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.');
-        setIsSignup(false); // يرجعك لصفحة تسجيل الدخول بعد إنشاء الحساب
-      } else {
-        // طلب تسجيل دخول
-        const response = await axios.post(`${BASE_URL}/login/`, {
-          username: formData.username,
-          password: formData.password
-        });
-        const { access } = response.data;
-        localStorage.setItem('token', access); // نخزن التوكن عشان نستخدمه لاحقًا
-        navigate('/main'); // نوجه المستخدم للداشبورد
-      }
-    } catch (err) {
-      console.error('API Error:', err);
-      setError('حدث خطأ، يرجى التأكد من المعلومات.');
-    }
+
+    // تسجيل دخول تجريبي مؤقت - قبول أي كلمة مرور
+    localStorage.setItem('token', 'temporary-token');
+    localStorage.setItem('first_name', formData.firstName || 'مستخدم');
+
+    navigate('/main');
   };
 
   return (
     <div className="wrapper">
-      {/* القسم الأيمن */}
       <div className="right-side">
         <img src={Logo} alt="Logo" className="main-logo" />
         <img src={Image2} alt="Secondary" className="second-image" />
@@ -74,7 +47,6 @@ export default function Sign() {
         </p>
       </div>
 
-      {/* القسم الأيسر */}
       <div className="left-side">
         <div className="form-card">
           <h2 className="form-title">{isSignup ? 'التسجيل' : 'تسجيل الدخول'}</h2>
@@ -155,8 +127,6 @@ export default function Sign() {
                 <Link to="/forget-password">نسيت كلمة المرور؟</Link>
               </p>
             )}
-
-            {error && <p className="error">{error}</p>}
 
             <button type="submit" className="action-btn">
               {isSignup ? 'التسجيل' : 'تسجيل الدخول'}
