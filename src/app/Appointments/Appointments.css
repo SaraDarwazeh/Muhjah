@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
 .appointments-container {
-    padding: 120px 40px 40px;
+    padding: 20px 90px 90px;
     direction: rtl;
     font-family: 'Cairo', sans-serif;
     background-color: #f9f9f9;
     font-size: 16px;
+
+    /* ✅ توسيع العرض ومحاذاة لليسار */
+    max-width: 1850px;
+    margin-left: 0;
+    margin-right: 200px;
 }
 
 .title {
@@ -19,56 +24,48 @@
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
-
 
 .search-input {
     padding: 1px 15px;
-    border: 2px solid #de5d58;   /* ✅ لون الإطار */
+    border: 2px solid #de5d58;
     border-radius: 8px;
-    background-color: #fff;      /* ✅ خلفية */
-    color: #333;                 /* ✅ لون النص */
-    min-width: 300px;
+    background-color: #fff;
+    color: #333;
+    min-width: 250px;
     flex: 1;
     font-family: 'Cairo', sans-serif;
-
-
 }
-
-
 
 .filter-select {
     padding: 10px;
-    border: 2px solid #ccc;       /* ✅ لون الإطار */
+    border: 2px solid #ccc;
     border-radius: 8px;
-    background-color: #fff;       /* ✅ الخلفية */
-    color: #333;                  /* ✅ النص */
+    background-color: #fff;
+    color: #333;
     font-family: 'Cairo', sans-serif;
 }
 
-
 .appointments-table {
     border-radius: 12px;
-    overflow-x: auto;
+    overflow-x: auto;       /* ✅ سكرول أفقي إذا لزم */
     width: 100%;
 }
 
+/* ✅ داخل الجدول */
 .table-header,
 .table-row {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    min-width: 900px;        /* ✅ حتى ما ينضغط كثير */
     padding: 12px;
     align-items: center;
-    border: 2px solid #000000;   /* ✅ لون الحدود - عدله حسب رغبتك */
+    border: 2px solid #000000;
     border-radius: 8px;
     margin-bottom: 20px;
     background-color: white;
 }
-
-
-
-
-
 
 .table-header {
     background-color: #de5d58;
@@ -95,4 +92,26 @@
 
 .action-icon:hover {
     color: #a8322d;
+}
+
+/* ✅ تحسين المظهر على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .appointments-container {
+        padding: 80px 20px 20px;
+        max-width: 100%;
+    }
+
+    .table-header,
+    .table-row {
+        grid-template-columns: repeat(3, 1fr);
+        min-width: unset;
+    }
+
+    .search-input {
+        min-width: 100%;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
 }

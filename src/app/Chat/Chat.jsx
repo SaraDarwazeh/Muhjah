@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mic, Image as ImageIcon, Send, CheckCheck } from 'lucide-react';
+import { Link, Mic, Image as ImageIcon, Send, CheckCheck ,MoreVertical} from 'lucide-react';
 import './Chat.css';
 
 const users = [
@@ -77,13 +77,21 @@ const Chat = () => {
         </div>
 
         <div className="chat-main">
+
           <div className="chat-header">
             <img src={activeUser.image} alt="مريض" />
+
+
+
+
             <div>
               <h2>{activeUser.name}</h2>
               <p>متصل الآن</p>
-            </div>
 
+            </div>
+            <div className="Option">
+              <MoreVertical size={18} />
+            </div>
           </div>
 
           <div className="chat-body">
@@ -96,7 +104,7 @@ const Chat = () => {
                   <div className="status-icon">
                     <CheckCheck size={14} />
                   </div>
-                  <time>{msg.timestamp || '١٠:٣٠'}</time>
+                  <time>{msg.timestamp || '10:30'}</time>
                 </div>
             ))}
           </div>
@@ -110,7 +118,7 @@ const Chat = () => {
                   placeholder="اكتب رسالتك هنا..."
               />
               <div className="chat-icons-inside">
-                <Phone size={18} />
+                <Link size={18} />
                 <Mic size={18} />
                 <ImageIcon size={18} />
               </div>

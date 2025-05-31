@@ -3,11 +3,16 @@
   height: 100vh;
   font-family: 'Cairo', sans-serif;
   direction: rtl;
-  width: 100vw;
+  width: 60vw;
   overflow: hidden;
-  padding: 130px 2rem 2rem 2rem;
+  padding: 100px 2rem 2rem 2rem; /* تأكد من تقليله لو احتجت */
 
 }
+.Option{
+  color: #d82121;
+  margin-right: 1220px;
+}
+
 
 .search-input {
   width: 100%;
@@ -189,13 +194,13 @@
   display: block;
   margin-top: 5px;
   font-size: 0.75rem;
-  color: #aaa;
+  color: #000000;
   text-align: left;
 }
 
 .from-doctor {
   align-self: flex-end;
-  background: #fd8e74;
+  background: #e96c53;
   color: white;
   border-bottom-left-radius: 0;
 }

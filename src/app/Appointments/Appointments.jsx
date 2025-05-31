@@ -4,6 +4,7 @@ import { FaEnvelope, FaPhone, FaEllipsisV } from "react-icons/fa";
 
 const Appointments = () => {
     const [search, setSearch] = useState("");
+    const [statusFilter, setStatusFilter] = useState("كل الحالات");
 
     const appointments = [
         { id: 1, name: "محمد خليل", date: "2025-06-01", time: "10:00", service: "فحص عام", duration: "30 دقيقة", phone: "0599123456", status: "مؤكد" },
@@ -18,16 +19,24 @@ const Appointments = () => {
         { id: 10, name: "نور حسن", date: "2025-06-01", time: "15:10", service: "فحص عام", duration: "30 دقيقة", phone: "0599111999", status: "مؤكد" },
     ];
 
-    const filteredAppointments = appointments.filter(app =>
-        app.name.includes(search) || app.phone.includes(search)
-    );
+    const filteredAppointments = appointments.filter(app => {
+        const matchesSearch =
+            app.name.includes(search) || app.phone.includes(search);
+        const matchesStatus =
+            statusFilter === "كل الحالات" || app.status === statusFilter;
+        return matchesSearch && matchesStatus;
+    });
 
     return (
         <div className="appointments-container">
             <h2 className="title">قائمة المواعيد</h2>
 
             <div className="filters">
-                <select className="filter-select">
+                <select
+                    className="filter-select"
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                >
                     <option>كل الحالات</option>
                     <option>مؤكد</option>
                     <option>بانتظار</option>
@@ -66,10 +75,10 @@ const Appointments = () => {
                         <span>{app.phone}</span>
                         <span>{app.status}</span>
                         <span className="actions-cell">
-              <FaEnvelope className="action-icon" />
-              <FaPhone className="action-icon" />
-              <FaEllipsisV className="action-icon" />
-            </span>
+                            <FaEnvelope className="action-icon" />
+                            <FaPhone className="action-icon" />
+                            <FaEllipsisV className="action-icon" />
+                        </span>
                     </div>
                 ))}
             </div>
