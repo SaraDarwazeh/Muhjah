@@ -3,8 +3,16 @@ import { Baby, Bell, CalendarDays, MessageCircle } from 'lucide-react';
 import './mainPage.css';
 import logo from "../../assets/Muhja.png";
 //import doctorImg from "../../assets/Dr.png";   // صورة الدكتور من مجلد assets ✅
+import { useNavigate } from 'react-router-dom';  // استيراد useNavigate
+
 
 const MainPage = () => {
+
+    const navigate = useNavigate();
+
+    const handleReviewClick = () => {
+        navigate('/feedback');  // توجه لصفحة feedback عند الضغط
+    };
     return (
         <div className="main-wrapper">
 
@@ -15,7 +23,7 @@ const MainPage = () => {
             </div>
 
 
-            <button className="review-button">مراجعة المنشورات</button>
+            <button className="review-button" onClick={handleReviewClick}>مراجعة المنشورات</button>
 
             <div className="greeting-section">
 

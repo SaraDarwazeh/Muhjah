@@ -1,195 +1,151 @@
-.chat-container {
-    display: flex;
-    flex-direction: row-reverse;
-    height: calc(100vh - 70px);
-    margin-top: 70px;
-    font-family: 'Cairo', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+.patients-container {
+    padding: 20px 90px 90px;
     direction: rtl;
-    width: 100vw;
-    max-width: 1400px;
-    margin-inline: auto;
-    overflow: hidden;
+    font-family: 'Cairo', sans-serif;
+    background-color: #f9f9f9;
+    font-size: 16px;
+
+    /* ✅ توسيع العرض ومحاذاة لليسار */
+    max-width: 1850px;
+    margin-left: 0;
+    margin-right: 200px;
 }
 
-.sidebar {
-    width: 350px;
-    background: #fff8f0;
-    border-left: 1px solid #eee;
-    padding: 1rem;
-    overflow-y: auto;
-}
-
-.sidebar-title {
-    margin-bottom: 1rem;
-    color: #e96c53;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-align: center;
-}
-
-.user-card {
-    display: flex;
-    align-items: center;
-    padding: 0.7rem;
-    margin-bottom: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    background: white;
-    position: relative;
-    transition: 0.3s ease;
-}
-
-.user-card:hover,
-.user-card.active {
-    background: #fff3e4;
-    border-color: #f5b047;
-}
-
-.user-card img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-left: 0.8rem;
-}
-
-.user-info h4 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.user-info p {
-    margin: 4px 0 0;
-    font-size: 0.85rem;
-    color: #888;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.user-card .time {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    font-size: 0.75rem;
-    color: #aaa;
-}
-
-.chat-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #f9f9f9;
-    min-width: 0;
-}
-
-.chat-header {
+/* ====== Header: Actions + Search ====== */
+.patients-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to left, #f5b047, #e96c53);
-    padding: 1rem 1.5rem;
-    color: white;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
-.chat-header img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-left: 1rem;
-}
-
-.chat-header h2 {
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.chat-header p {
-    font-size: 0.9rem;
-    margin: 2px 0 0;
-}
-
-.chat-icons {
+.left-actions {
     display: flex;
-    gap: 16px;
-    cursor: pointer;
+    gap: 10px;
 }
 
-.chat-body {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: #fefefe;
-}
-
-.chat-bubble {
-    max-width: 65%;
-    padding: 0.9rem 1.2rem;
-    border-radius: 18px;
-    font-size: 1rem;
-    line-height: 1.6;
-    word-break: break-word;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.from-doctor {
-    align-self: flex-end;
-    background: #e96c53;
-    color: white;
-    border-bottom-left-radius: 0;
-}
-
-.from-patient {
-    align-self: flex-start;
-    background: #eee;
-    color: #333;
-    border-bottom-right-radius: 0;
-}
-
-.message-meta {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    font-size: 0.75rem;
-    margin-top: 5px;
-    color: #999;
-}
-
-.chat-input {
-    display: flex;
-    padding: 1rem 1.5rem;
-    border-top: 1px solid #eee;
-    background: white;
-}
-
-.chat-input input {
-    flex: 1;
-    padding: 0.9rem 1rem;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    margin-left: 1rem;
-}
-
-.chat-input button {
-    background: #f5b047;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    color: white;
-    cursor: pointer;
+.btn {
     display: flex;
     align-items: center;
-    transition: background 0.3s;
+    gap: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Cairo', sans-serif;
 }
 
-.chat-input button:hover {
-    background: #e96c53;
+.orange-btn {
+    background-color: #de5d58;
+    color: white;
+}
+
+.gray-btn {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #de5d58;
+    border-radius: 8px;
+    padding: 6px 12px;
+    min-width: 350px;
+    background-color: white;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+    width: 100%;
+}
+
+/* ====== Table ====== */
+.patients-table {
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Header row */
+.table-row.header {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
+    background-color: #de5d58;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+
+/* Table rows */
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
+    padding: 12px;
+    border: 1.4px solid black;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    align-items: center;
+    background-color: white;
+    min-height: 48px;
+}
+
+.table-row.alt-row {
+    background-color: #ececec;
+}
+
+/* Icon cells */
+.icon-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #de5d58;
+    transition: color 0.2s;
+}
+
+.icon:hover {
+    color: #a8322d;
+}
+
+/* ====== Pagination ====== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.pagination span {
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background-color: #de5d58;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination span:hover {
+    background-color: #ffe3e1;
 }

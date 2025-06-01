@@ -1,0 +1,138 @@
+/* src/components/Personalinfo.css */
+
+/* 1) الحاوية الأساسية للصفحة (Navbar + content-wrapper) */
+.page-container {
+    padding: 20px 90px 90px;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    background-color: #f9f9f9;
+    font-size: 16px;
+
+    /* ✅ توسيع العرض ومحاذاة لليسار */
+    max-width: 1850px;
+    margin-left: 0;
+    margin-right: 200px;
+}
+
+/* 2) حاوية Sidebar + Main Content */
+.content-wrapper {
+    display: flex;
+    flex: 1;                     /* تأخذ ما تبقى من المساحة (أسفل الـ Navbar) */
+    flex-direction: row-reverse; /* Sidebar على اليمين، Main Content على اليسار */
+    background-color: #f5f5f5;   /* خلفية رمادية خفيفة لمنطقة المحتوى */
+}
+
+/* 3) منطقة المحتوى الرئيسية */
+.main-content {
+    flex: 1;                     /* تأخذ باقي المساحة بجانب الـ Sidebar */
+    padding: 1.5rem;             /* مسافة داخلية حول المحتوى */
+    overflow-y: auto;            /* تفعيل التمرير العمودي إذا زاد المحتوى على الارتفاع */
+    background-color: #ffffff;   /* لجعل خلفية المحتوى بيضاء */
+    direction: rtl;              /* اتجاه النص عربي */
+    font-family: "Cairo", sans-serif;
+}
+
+/* عنوان القسم */
+.section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+/* ==== ثلاثة حقول نصية في صف واحد ==== */
+.inputs-row {
+    display: flex;
+    gap: 1rem;             /* مسافة أفقية بين الحقول */
+    margin-bottom: 1.5rem; /* مسافة تحت الحقول قبل صفّ Selects */
+}
+
+.text-input {
+    flex: 1;                       /* كل حقل يأخذ مساحة متساوية */
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    text-align: right;            /* محاذاة النص إلى اليمين (للكتابة بالعربي) */
+}
+
+/* ==== صف قوائم الاختيار Selects ==== */
+.select-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* الغلاف لكل قائمة (Label + Select أو Current Time) */
+.select-wrapper {
+    flex: 1;                        /* توزيع الفراغ بالتساوي بين الحقول */
+    display: flex;
+    flex-direction: column;
+    text-align: right;              /* محاذاة النص في الأعلى لليمين */
+    font-size: 0.9rem;
+}
+
+/* تسمية الحقل */
+.select-wrapper label {
+    margin-bottom: 0.4rem;
+    color: #444444;
+    font-weight: 500;
+}
+
+/* تنسيق قائمة Select */
+.select-wrapper select {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background-color: #c4c6c6;
+    cursor: pointer;
+}
+
+/* الوقت الحالي (span بدل select) */
+.select-wrapper .current-time {
+    padding: 0.55rem 0.75rem;
+    background-color: #C4C6C6FF;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+/* ==== صف الأزرار ==== */
+.button-row {
+    display: flex;
+    justify-content: flex-end; /* الأزرار على الجانب الأيمن */
+    gap: 0.75rem;              /* مسافة بين زر وزر */
+    margin-top: 1rem;
+}
+
+/* تنسيق الأزرار */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* زر الإلغاء */
+.cancel-btn {
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #ccc;
+}
+
+.cancel-btn:hover {
+    opacity: 0.8;
+}
+
+/* زر الحفظ */
+.save-btn {
+    background-color: #e5635b;
+    color: #ffffff;
+    border: none;
+}
+
+.save-btn:hover {
+    opacity: 0.9;
+}

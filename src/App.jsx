@@ -7,6 +7,10 @@ import ChatUI from './app/Chat/Chat';
 import Navbar from './app/Navbar/Navbar';
 import BAR from './app/Sidebar/Sidebar';
 import Appointments from './app/Appointments/Appointments';
+import Patients from './app/Patients/Patients';
+import SocialMediaDashboard from './app/feedback/feedback.jsx';
+import Personalinfo from'./app/Personalinfo/Personalinfo.jsx';
+
 
 
 const EmptyPage = ({ title }) => (
@@ -35,18 +39,19 @@ function App() {
                                 <Route path="/overview" element={<EmptyPage title="Overview" />} />
                                 <Route path="/appointments" element={<EmptyPage title="Appointments" />} />
                                 <Route path="/الرسائل" element={<ChatUI />} />
-                                <Route path="/patients" element={<EmptyPage title="Patients" />} />
                                 <Route path="/schedule" element={<EmptyPage title="Schedule" />} />
                                 <Route path="/reports" element={<EmptyPage title="Reports" />} />
+                                <Route path="/feedback" element={<SocialMediaDashboard />} />
+
 
                                 {/* روابط من Sidebar */}
                                 <Route path="/الرئيسية" element={<MainPage />} />
                                 <Route path="/المواعيد" element={<Appointments />} />
-                                <Route path="/المرضى" element={<EmptyPage title="المرضى" />} />
+                                <Route path="/المرضى" element={<Patients />} />
                                 <Route path="/حسابي" element={<EmptyPage title="حسابي" />} />
                                 <Route path="/تعديل-المعلومات" element={<EmptyPage title="تعديل المعلومات" />} />
                                 <Route path="/الإشعارات" element={<EmptyPage title="الإشعارات والتنبيهات" />} />
-                                <Route path="/إعدادات-متقدمة" element={<EmptyPage title="إعدادات متقدمة" />} />
+                                <Route path="/إعدادات-متقدمة" element={<Personalinfo />} />
                             </Routes>
 
                         </div>

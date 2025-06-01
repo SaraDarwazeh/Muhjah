@@ -52,7 +52,7 @@ const Chat = () => {
 
   return (
       <div className="chat-container">
-        <div className="sidebar">
+        <div className="chatsidebar">
           <h3 className="sidebar-title">قائمة المرضى</h3>
           <input
               type="text"
