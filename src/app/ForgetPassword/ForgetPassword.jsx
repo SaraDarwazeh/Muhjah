@@ -117,7 +117,7 @@ const ForgetPassword = () => {
           </form>
 
           <div className="back-to-login">
-            <a href="/login">العودة إلى تسجيل الدخول</a>
+            <Link to="/">العودة إلى تسجيل الدخول</Link>
           </div>
         </div>
       </div>

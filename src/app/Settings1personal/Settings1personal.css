@@ -1,0 +1,74 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    background-color: #f5f5f5;
+}
+
+.settings-container {
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.settings-box {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.settings-box input,
+.settings-box select {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: right;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.row label {
+    font-size: 14px;
+    color: #444;
+    width: 100px;
+}
+
+.row select {
+    flex: 1;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.actions button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+.actions .cancel {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+.actions .save {
+    background-color: #e7605a;
+    color: #fff;
+}

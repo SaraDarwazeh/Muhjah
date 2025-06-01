@@ -10,7 +10,7 @@ import Appointments from './app/Appointments/Appointments';
 import Patients from './app/Patients/Patients';
 import SocialMediaDashboard from './app/feedback/feedback.jsx';
 import Personalinfo from'./app/Personalinfo/Personalinfo.jsx';
-
+import SettingsPage from './app/Settings1personal/Settings1personal.jsx';
 
 
 const EmptyPage = ({ title }) => (
@@ -49,9 +49,10 @@ function App() {
                                 <Route path="/المواعيد" element={<Appointments />} />
                                 <Route path="/المرضى" element={<Patients />} />
                                 <Route path="/حسابي" element={<EmptyPage title="حسابي" />} />
-                                <Route path="/تعديل-المعلومات" element={<EmptyPage title="تعديل المعلومات" />} />
                                 <Route path="/الإشعارات" element={<EmptyPage title="الإشعارات والتنبيهات" />} />
                                 <Route path="/إعدادات-متقدمة" element={<Personalinfo />} />
+                                <Route path="/تعديل-المعلومات" element={<SettingsPage />} />
+
                             </Routes>
 
                         </div>

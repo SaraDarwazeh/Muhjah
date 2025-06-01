@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import {
     LayoutDashboard,
     Calendar,
@@ -14,6 +16,7 @@ import "./Sidebar.css";
 const BAR = () => {
     const [showSettings, setShowSettings] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const hideSidebarOn = ['/', '/sign', '/forget-password'];
     if (hideSidebarOn.includes(location.pathname)) return null;
@@ -59,10 +62,15 @@ const BAR = () => {
                 )}
             </div>
             <div className="logout-box">
-                <button className="logout-btn">
+                <button
+                    className="logout-btn"
+                    onClick={() => navigate('/')} // يرجعك على صفحة تسجيل الدخول
+                >
                     <LogOut size={16} />
                     <span>تسجيل الخروج</span>
                 </button>
+
+
             </div>
 
         </div>
