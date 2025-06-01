@@ -9,7 +9,7 @@ import ForgetPassword from './app/ForgetPassword/ForgetPassword';
 import MainPage from './app/MainPage/MainPage';
 import ChatUI from './app/Chat/Chat';
 import Feedback from './app/feedback/feedback';
-import Personalinfo from './app/Personalinfo/Personalinfo.JSX';
+import Personalinfo from './app/Personalinfo/Personalinfo.jsx';
 
 import SettingsPage from './app/Setting1personal/Setting1personal';
 
