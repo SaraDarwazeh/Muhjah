@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import , { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './sign.css';
-import Logo from '../../assets/Muhja.png';
+import Logo from '../../assets/muhsign.svg';
 import Image2 from '../../assets/Mum.png';
 import UserIcon from '../../assets/Message.svg';
 import EmailIcon from '../../assets/Message-1.svg';
