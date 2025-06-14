@@ -4,12 +4,13 @@ body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
   direction: rtl;
+
   background: #fef7f5;
 }
 
 .wrapper {
   display: flex;
-  height: 90vh; /* أقل من 100vh */
+  height: 90vh;
   width: 90%;
   max-width: 1400px;
   margin: 3vh auto;
@@ -18,41 +19,42 @@ body {
   overflow: hidden;
 }
 
-/* الجانب الأيمن */
+/* ===== Right Side ===== */
 .right-side {
   flex: 1;
   background-color: #E7605A;
-  
   color: white;
+  font-size : 10rem ;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-end;
+  padding: 3rem 3rem 3rem;
   text-align: center;
 }
 
-.main-logo {
-  width: 250px;
-  margin-bottom: -4rem;
+.muhja-logo {
+  width: 300px;
+  /* margin-bottom: 1rem; */
+  margin-top: 10rem;
+ 
 }
 
-.second-image {
-  width: 500px;
-  max-width: 80%;
-  margin-bottom: 1.2rem;
+.mom-image {
+  width: 260px;
+  margin-bottom: 3rem;
+  
 }
 
 .welcome-text {
   font-family: 'Cairo', sans-serif;
-
-  font-size: 1.8rem;
-  font-weight: 500;
-  max-width: 80%;
-  line-height: 1.6;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+  max-width: 450px;
 }
 
-/* الجانب الأيسر */
+/* ===== Left Side ===== */
 .left-side {
   flex: 1;
   background: white;
@@ -74,7 +76,6 @@ body {
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: #E7605A;
-  
 }
 
 .input-group {
@@ -119,15 +120,13 @@ body {
   text-align: left;
   font-size: 0.9rem;
   color: #E7605A;
-  
   cursor: pointer;
   margin-bottom: 1rem;
 }
 
 .action-btn {
   width: 100%;
-  background-color:#E7605A;
-
+  background-color: #E7605A;
   color: white;
   border: none;
   padding: 0.8rem;
@@ -139,8 +138,7 @@ body {
 }
 
 .action-btn:hover {
-  background-color: #E7605A;
-  
+  background-color: #d24c47;
 }
 
 .separator {
@@ -168,7 +166,6 @@ body {
 
 .toggle-text span {
   color: #E7605A;
-
   font-weight: 700;
   cursor: pointer;
 }

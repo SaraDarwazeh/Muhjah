@@ -1,8 +1,9 @@
-import , { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './sign.css';
-import Logo from '../../assets/muhsign.svg';
-import Image2 from '../../assets/Mum.png';
+
+import MomImage from '../../assets/sgmom.svg';
+import Logo from '../../assets/Muhja.svg';
 import UserIcon from '../../assets/Message.svg';
 import EmailIcon from '../../assets/Message-1.svg';
 import LockIcon from '../../assets/Lock-icon.svg';
@@ -29,21 +30,19 @@ export default function Sign() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // تسجيل دخول تجريبي مؤقت - قبول أي كلمة مرور
     localStorage.setItem('token', 'temporary-token');
     localStorage.setItem('first_name', formData.firstName || 'مستخدم');
-
     navigate('/main');
   };
 
   return (
     <div className="wrapper">
       <div className="right-side">
-        <img src={Logo} alt="Logo" className="main-logo" />
-        <img src={Image2} alt="Secondary" className="second-image" />
+        <img src={Logo} alt="Muhja Logo" className="muhja-logo" />
+        <img src={MomImage} alt="Mom Illustration" className="mom-image" />
         <p className="welcome-text">
-          مرحبًا بك في منصة مُهجة، حيث نربطك بالعالم بأمان وسهولة!
+          مرحباً بك في منصة مُهجة،<br />
+          حيث نربطك بالعالم بأمان وسهولة!
         </p>
       </div>
 
@@ -124,7 +123,7 @@ export default function Sign() {
 
             {!isSignup && (
               <p className="forgot">
-                <Link to="/forget-password">نسيت كلمة المرور؟</Link>
+                <Link to="/forget-password">نسيت كلمة المرور ؟</Link>
               </p>
             )}
 
@@ -133,11 +132,11 @@ export default function Sign() {
             </button>
           </form>
 
-          <div className="separator">— أو تابع باستخدام —</div>
+          <div className="separator">- أو تابع باستخدام -</div>
 
           <div className="social-icons">
-            <img src={GoogleIcon} alt="Google" />
             <img src={FacebookIcon} alt="Facebook" />
+            <img src={GoogleIcon} alt="Google" />
           </div>
 
           <p className="toggle-text">
