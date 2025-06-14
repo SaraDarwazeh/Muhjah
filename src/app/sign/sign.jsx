@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import './sign.css';
 
 import MomImage from '../../assets/sgmom.svg';
@@ -28,11 +29,35 @@ export default function Sign() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('token', 'temporary-token');
-    localStorage.setItem('first_name', formData.firstName || 'مستخدم');
-    navigate('/main');
+    try {
+      if (isSignup) {
+        // signup
+        await axios.post('http://127.0.0.1:8000/auth/signup/', {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          first_name: formData.firstName,
+          last_name: formData.familyName,
+          role: 'DOCTOR'
+        });
+        alert('تم التسجيل بنجاح! يمكنك تسجيل الدخول الآن.');
+        setIsSignup(false);
+      } else {
+        // login
+        const response = await axios.post('http://127.0.0.1:8000/auth/login/', {
+          username: formData.username,
+          password: formData.password
+        });
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('first_name', response.data.first_name || 'مستخدم');
+        navigate('/main');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('حدث خطأ أثناء العملية. تأكد من البيانات.');
+    }
   };
 
   return (
