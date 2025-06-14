@@ -24,7 +24,7 @@ body {
   flex: 1;
   background-color: #E7605A;
   color: white;
-  font-size : 10rem ;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,9 +119,17 @@ body {
 .forgot {
   text-align: left;
   font-size: 0.9rem;
-  color: #E7605A;
-  cursor: pointer;
   margin-bottom: 1rem;
+}
+
+/* هذا هو المهم لتغيير اللون داخل الرابط */
+.forgot a {
+  color: #E7605A;
+  text-decoration: none; /* اختياري: إزالة الخط */
+}
+
+.forgot a:hover {
+  text-decoration: underline; /* اختياري عند التحويم */
 }
 
 .action-btn {
@@ -169,3 +177,4 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
+
