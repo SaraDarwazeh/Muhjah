@@ -4,6 +4,11 @@ import Navbar from "../Navbar/Navbar";
 import BAR from "../Sidebar/Sidebar";
 import "./Personalinfo.css";
 
+
+
+
+//صفحة اعدادات متقدمة 
+
 const Personalinfo = () => {
     // حالات لإدخال القيم في القوائم المنسدلة
     const [language, setLanguage] = useState("عربي");

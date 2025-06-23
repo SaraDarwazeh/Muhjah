@@ -1,93 +1,244 @@
-import React, { useState } from 'react';
-import './Settings1personal.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./Settings1personal.css";
+import profilePic from "../../assets/Dr.png";
+import { Trash2, Shield, Calendar, Layers } from "lucide-react";
 
 const SettingsPage = () => {
-    const [form, setForm] = useState({
-        control: '',
-        schedule: '',
-        integration: '',
-        language: 'ar',
-        dateFormat: 'MM/DD/YYYY',
-        timeFormat: '12h',
-        country: 'فلسطين',
-        timezone: 'Central Time - Palestine'
-    });
+  const [fullName, setFullName] = useState("د. محمد مصطفى");
+  const [overview, setOverview] = useState(
+    "أنا الدكتور محمد مصطفى، أخصائي طب الأطفال، أعمل في مدينة نابلس - فلسطين. " +
+      "أحرص في عملي على توفير رعاية طبية شاملة ومبنية على أسس علمية حديثة، " +
+      "مع التركيز على دعم صحة الطفل الجسدية والنفسية."
+  );
+  const [email, setEmail] = useState("mohammad@gmail.com");
+  const [country, setCountry] = useState("فلسطين");
+  const [address, setAddress] = useState("نابلس - رفيديا");
+  const [phone, setPhone] = useState("0599000000");
+  const [password, setPassword] = useState("");
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+  const [language, setLanguage] = useState("عربي");
+  const [dateFormat, setDateFormat] = useState("MM/DD/YYYY");
+  const [timeFormat, setTimeFormat] = useState("12h (am/pm)");
+  const [timezone, setTimezone] = useState("Central Time - Palestine");
+
+  const [currentTime, setCurrentTime] = useState("");
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const suffix = hours >= 12 ? "pm" : "am";
+      hours = hours % 12 === 0 ? 12 : hours % 12;
+      const mm = minutes < 10 ? "0" + minutes : minutes;
+      setCurrentTime(`${hours}:${mm} ${suffix}`);
     };
+    updateClock();
+    const timerId = setInterval(updateClock, 60 * 1000);
+    return () => clearInterval(timerId);
+  }, []);
 
-    const handleSave = () => {
-        alert('تم حفظ التغييرات ✅');
-    };
+  const handleSaveAll = () => {
+    alert("تم حفظ جميع التغييرات");
+  };
+  const handleCancelAll = () => {
+    setFullName("د. محمد مصطفى");
+    setOverview("...");
+    setEmail("mohammad@gmail.com");
+    setCountry("فلسطين");
+    setAddress("نابلس - رفيديا");
+    setPhone("0599000000");
+    setPassword("");
+    setLanguage("عربي");
+    setDateFormat("MM/DD/YYYY");
+    setTimeFormat("12h (am/pm)");
+    setTimezone("Central Time - Palestine");
+  };
+  const handleDeleteImage = () => {
+    alert("تم حذف صورة الملف الشخصي");
+  };
 
-    const handleCancel = () => {
-        alert('تم إلغاء التعديلات');
-    };
-
-    return (
-        <div className="settings-container">
-            <div className="settings-box">
-                <input
-                    type="text"
-                    name="control"
-                    placeholder="إعدادات الأمان والتحكم"
-                    value={form.control}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="schedule"
-                    placeholder="تحصيح جدول العمل الذكي"
-                    value={form.schedule}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="integration"
-                    placeholder="تكامل مع أنظمة وتطبيقات أخرى"
-                    value={form.integration}
-                    onChange={handleChange}
-                />
-
-                <select name="language" value={form.language} onChange={handleChange}>
-                    <option value="ar">عربي</option>
-                    <option value="en">English</option>
-                </select>
-
-                <div className="row">
-                    <label>نسق التاريخ</label>
-                    <select name="dateFormat" value={form.dateFormat} onChange={handleChange}>
-                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
-                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-                    </select>
-
-                    <label>نسق الوقت</label>
-                    <select name="timeFormat" value={form.timeFormat} onChange={handleChange}>
-                        <option value="12h">12h (am/pm)</option>
-                        <option value="24h">24h</option>
-                    </select>
-                </div>
-
-                <select name="country" value={form.country} onChange={handleChange}>
-                    <option value="فلسطين">فلسطين</option>
-                    <option value="الأردن">الأردن</option>
-                    <option value="لبنان">لبنان</option>
-                </select>
-
-                <select name="timezone" value={form.timezone} onChange={handleChange}>
-                    <option value="Central Time - Palestine">Central Time - Palestine</option>
-                    <option value="Europe/Berlin">Europe - Berlin</option>
-                    <option value="Asia/Amman">Asia - Amman</option>
-                </select>
-
-                <div className="actions">
-                    <button className="cancel" onClick={handleCancel}>إلغاء</button>
-                    <button className="save" onClick={handleSave}>حفظ التغييرات</button>
-                </div>
-            </div>
+  return (
+    <div className="profile-page-container">
+      <div className="profile-top-section">
+        <div className="profile-image-container">
+          <img src={profilePic} alt="Profile" className="profile-image" />
+          <div className="image-buttons">
+            <button className="btn update-btn">تحديث</button>
+            <button className="btn delete-btn" onClick={handleDeleteImage}>
+              <Trash2 size={16} />
+              <span>حذف</span>
+            </button>
+          </div>
         </div>
-    );
+
+        <div className="profile-fields-container">
+          <div className="field-group">
+            <label>الاسم</label>
+            <input
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
+          <div className="field-group">
+            <label>نظرة عامة</label>
+            <textarea
+              className="overview-textarea"
+              rows={4}
+              value={overview}
+              onChange={(e) => setOverview(e.target.value)}
+            />
+          </div>
+          <div className="field-group">
+            <label>البريد الإلكتروني</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="field-group">
+            <label>الدولة</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="فلسطين">فلسطين</option>
+              <option value="الأردن">الأردن</option>
+              <option value="مصر">مصر</option>
+              <option value="لبنان">لبنان</option>
+            </select>
+          </div>
+          <div className="field-group">
+            <label>العنوان</label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          <div className="field-group">
+            <label>رقم الهاتف</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="field-group">
+            <label>تغيير كلمة السر</label>
+            <input
+              type="password"
+              value={password}
+              placeholder="••••••••"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <hr className="divider" />
+
+      <div className="settings-bottom-section">
+        <div className="nav-buttons-column">
+          <Link to="/settings/security" className="nav-button">
+            <Shield size={20} />
+            <span>إعدادات الأمان والتحكم</span>
+          </Link>
+          <Link to="/settings/schedule" className="nav-button">
+            <Calendar size={20} />
+            <span>جدول العمل الذكي</span>
+          </Link>
+          <Link to="/settings/integrations" className="nav-button">
+            <Layers size={20} />
+            <span>تكامل وتطبيقات</span>
+          </Link>
+        </div>
+
+        <div className="select-row">
+          <div className="select-wrapper">
+            <label>اللغة</label>
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              <option value="عربي">عربي</option>
+              <option value="English">English</option>
+              <option value="Français">Français</option>
+            </select>
+          </div>
+
+          <div className="select-wrapper">
+            <label>تنسيق التاريخ</label>
+            <select
+              value={dateFormat}
+              onChange={(e) => setDateFormat(e.target.value)}
+            >
+              <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+              <option value="YYYY/MM/DD">YYYY/MM/DD</option>
+            </select>
+          </div>
+
+          <div className="select-wrapper">
+            <label>تنسيق الوقت</label>
+            <select
+              value={timeFormat}
+              onChange={(e) => setTimeFormat(e.target.value)}
+            >
+              <option value="12h (am/pm)">12h (am/pm)</option>
+              <option value="24h">24h</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="select-row">
+          <div className="select-wrapper">
+            <label>الدولة</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            >
+              <option value="فلسطين">فلسطين</option>
+              <option value="الأردن">الأردن</option>
+              <option value="مصر">مصر</option>
+              <option value="لبنان">لبنان</option>
+            </select>
+          </div>
+
+          <div className="select-wrapper">
+            <label>المنطقة الزمنية</label>
+            <select
+              value={timezone}
+              onChange={(e) => setTimezone(e.target.value)}
+            >
+              <option value="Central Time - Palestine">
+                Central Time - Palestine
+              </option>
+              <option value="GMT">GMT</option>
+              <option value="CET">CET</option>
+              <option value="Asia/Amman">Asia/Amman</option>
+            </select>
+          </div>
+
+          <div className="select-wrapper">
+            <label>الوقت الحالي</label>
+            <span className="current-time">{currentTime}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-buttons">
+        <button className="btn cancel-btn" onClick={handleCancelAll}>
+          إلغاء
+        </button>
+        <button className="btn save-btn" onClick={handleSaveAll}>
+          حفظ التغييرات
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default SettingsPage;

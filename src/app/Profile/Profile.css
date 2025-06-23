@@ -1,0 +1,78 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f6f6f6;
+    font-family: "Cairo", sans-serif;
+  }
+  
+  .profile-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    width: 95%;
+    max-width: 1100px;
+    direction: rtl;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: row-reverse; /* يجعل الصورة في أقصى اليمين */
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 2rem;
+  }
+  
+  .profile-info {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .profile-info h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .profile-info h4 {
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  .profile-info p {
+    margin: 0.4rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .profile-stars {
+    color: #f5b301;
+    font-size: 1.3rem;
+    margin-top: 0.6rem;
+  }
+  
+  .profile-description {
+    margin-top: 1rem;
+  }
+  
+  .profile-description h3 {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .profile-description p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.9;
+  }
+  

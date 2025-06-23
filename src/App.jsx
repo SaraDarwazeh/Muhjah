@@ -11,7 +11,9 @@ import Patients from './app/Patients/Patients';
 import SocialMediaDashboard from './app/feedback/feedback.jsx';
 import Personalinfo from'./app/Personalinfo/Personalinfo.jsx';
 import SettingsPage from './app/Settings1personal/Settings1personal.jsx';
+import Profile from './app/Profile/Profile.jsx';
 
+const hideLayoutOn = ['/', '/forget-password'];
 
 const EmptyPage = ({ title }) => (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -22,7 +24,7 @@ const EmptyPage = ({ title }) => (
 
 function App() {
     const location = useLocation();
-    const hideLayoutOn = ['/', '/forgot-password'];
+    const hideLayoutOn = ['/', '/forget-password'];
 
     const shouldShowLayout = !hideLayoutOn.includes(location.pathname);
 
@@ -42,16 +44,18 @@ function App() {
                                 <Route path="/schedule" element={<EmptyPage title="Schedule" />} />
                                 <Route path="/reports" element={<EmptyPage title="Reports" />} />
                                 <Route path="/feedback" element={<SocialMediaDashboard />} />
+                                
 
 
                                 {/* روابط من Sidebar */}
                                 <Route path="/الرئيسية" element={<MainPage />} />
                                 <Route path="/المواعيد" element={<Appointments />} />
                                 <Route path="/المرضى" element={<Patients />} />
-                                <Route path="/حسابي" element={<EmptyPage title="حسابي" />} />
+                                <Route path="/حسابي" element={<Profile />} />
                                 <Route path="/الإشعارات" element={<EmptyPage title="الإشعارات والتنبيهات" />} />
                                 <Route path="/إعدادات-متقدمة" element={<Personalinfo />} />
                                 <Route path="/تعديل-المعلومات" element={<SettingsPage />} />
+                                <Route path="/forget-password" element={<ForgetPassword />} />
 
                             </Routes>
 

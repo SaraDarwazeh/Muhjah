@@ -7,13 +7,12 @@
     background-color: #f9f9f9;
     font-size: 16px;
 
-    /* ✅ توسيع العرض ومحاذاة لليسار */
+
     max-width: 1850px;
     margin-left: 0;
     margin-right: 200px;
 }
 
-/* ====== Header: Actions + Search ====== */
 .patients-actions {
     display: flex;
     justify-content: space-between;
@@ -69,13 +68,12 @@
     width: 100%;
 }
 
-/* ====== Table ====== */
+
 .patients-table {
     border-radius: 8px;
     overflow-x: auto;
 }
 
-/* Header row */
 .table-row.header {
     display: grid;
     grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
@@ -88,7 +86,6 @@
 }
 
 
-/* Table rows */
 .table-row {
     display: grid;
     grid-template-columns: repeat(8, 1fr) repeat(3, 40px);
@@ -105,7 +102,7 @@
     background-color: #ececec;
 }
 
-/* Icon cells */
+
 .icon-cell {
     display: flex;
     justify-content: center;
@@ -123,7 +120,7 @@
     color: #a8322d;
 }
 
-/* ====== Pagination ====== */
+
 .pagination {
     display: flex;
     justify-content: center;

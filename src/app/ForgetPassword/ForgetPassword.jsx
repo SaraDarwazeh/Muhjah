@@ -44,7 +44,9 @@ const ForgetPassword = () => {
   const togglePasswordVisibility = () => setShowPassword(v => !v);
 
   return (
+
     <div className="forget-password-page">
+
       {/* Left panel */}
       <div className="panel form-panel">
         <div className="form-box">
